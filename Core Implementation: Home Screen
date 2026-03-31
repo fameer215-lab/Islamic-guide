@@ -1,0 +1,83 @@
+// lib/screens/home_screen.dart
+import 'package:flutter/material.dart';
+import '../config.dart';
+
+class HomeScreen extends StatelessWidget {
+  final List<Map<String, dynamic>> gridItems = [
+    {"title": "Quran", "icon": Icons.menu_book},
+    {"title": "Nobi", "icon": Icons.history_edu},
+    {"title": "Niskaram", "icon": Icons.accessibility_new},
+    {"title": "Dhikr", "icon": Icons.fingerprint},
+    {"title": "Dua", "icon": Icons.back_hand},
+    {"title": "Favorites", "icon": Icons.favorite},
+    {"title": "Complaints", "icon": Icons.report_problem},
+    {"title": "AI Agent", "icon": Icons.smart_toy},
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(isAdminApp ? 'Islamic Admin Panel' : 'Islamic Companion'),
+        actions: isAdminApp ? [IconButton(icon: Icon(Icons.notifications), onPressed: () {})] : [],
+      ),
+      body: Column(
+        children: [
+          // Top Section: Prayer Times & Countdown
+          Container(
+            padding: EdgeInsets.all(20),
+            color: Theme.of(context).primaryColor,
+            child: Column(
+              children: [
+                Text("14 Muharram 1446", style: TextStyle(color: Colors.white, fontSize: 18)),
+                SizedBox(height: 10),
+                Text("Next Prayer: Maghrib in 01:20:15", style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
+                // Horizontal list of prayer times would go here
+              ],
+            ),
+          ),
+          
+          // Grid Section
+          Expanded(
+            child: GridView.builder(
+              padding: EdgeInsets.all(16),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+              ),
+              itemCount: gridItems.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  child: InkWell(
+                    onTap: () {
+                      // Navigate to respective screens based on gridItems[index]['title']
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(gridItems[index]['icon'], size: 50, color: Theme.of(context).primaryColor),
+                        SizedBox(height: 10),
+                        Text(gridItems[index]['title'], style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          )
+        ],
+      ),
+      // Admin Only FAB to add quick content
+      floatingActionButton: isAdminApp 
+        ? FloatingActionButton(
+            backgroundColor: Theme.of(context).primaryColor,
+            child: Icon(Icons.add),
+            onPressed: () { /* Open Admin Action Menu */ },
+          ) 
+        : null,
+    );
+  }
+}
