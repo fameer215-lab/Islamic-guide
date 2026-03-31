@@ -1,0 +1,19 @@
+// lib/theme.dart
+import 'package:flutter/material.dart';
+
+final lightTheme = ThemeData(
+  brightness: Brightness.light,
+  primaryColor: const Color(0xFF1B5E20), // Deep Islamic Green
+  scaffoldBackgroundColor: Colors.white,
+  cardColor: const Color(0xFFF1F8E9), // Light Green Tint
+  appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF1B5E20), centerTitle: true),
+  fontFamily: 'Amiri', // Good for Arabic and English
+);
+
+final darkTheme = ThemeData(
+  brightness: Brightness.dark,
+  primaryColor: const Color(0xFF4CAF50),
+  scaffoldBackgroundColor: const Color(0xFF121212),
+  cardColor: const Color(0xFF1E1E1E),
+  appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF121212)),
+);
