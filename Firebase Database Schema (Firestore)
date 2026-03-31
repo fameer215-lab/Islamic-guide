@@ -1,0 +1,8 @@
+prayer_times: Document daily -> { fajr: "05:10", dhuhr: "12:30", asr: "15:45", maghrib: "18:20", isha: "19:40", hijri_date: "14 Muharram 1446" }
+quran: { surah_name_en, surah_name_ar, surah_name_ml, ayahs: [{text_ar, text_en, text_ml}], audio_url }
+nobi: { prophet_name, story_en, story_ml, story_ar, image_url }
+niskaram: { step_number, title, description, image_url }
+dhikr: { text_ar, text_en, text_ml, target_count }
+dua: { title, text_ar, translation_en, translation_ml }
+complaints: { text, timestamp, status: "pending" | "resolved" }
+ai_settings: Document config -> { is_enabled: true, predefined_responses: [...] }
