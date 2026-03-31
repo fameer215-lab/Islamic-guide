@@ -1,0 +1,33 @@
+// lib/services/ai_service.dart
+import 'package:google_generative_ai/google_generative_ai.dart';
+
+class AIService {
+  static const String _apiKey = 'YOUR_GEMINI_API_KEY'; // Secure this in a .env file
+  late GenerativeModel _model;
+  late ChatSession _chat;
+
+  AIService() {
+    _model = GenerativeModel(
+      model: 'gemini-1.5-flash', // Use latest available Gemini model
+      apiKey: _apiKey,
+      systemInstruction: Content.system(
+          "You are an Islamic AI assistant. Provide authentic, respectful, and simple Islamic guidance. "
+          "Avoid controversial answers. Support Malayalam, English, Arabic. Provide Hadith/Quran references when possible."
+      ),
+    );
+    _chat = _model.startChat();
+  }
+
+  Future<String> sendMessage(String message) async {
+    try {
+      final response = await _chat.sendMessage(Content.text(message));
+      return response.text ?? "I could not process that request.";
+    } catch (e) {
+      return "Connection error. Please try again.";
+    }
+  }
+  
+  void clearChat() {
+     _chat = _model.startChat();
+  }
+}
