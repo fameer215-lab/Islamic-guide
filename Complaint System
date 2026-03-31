@@ -1,0 +1,5 @@
+FirebaseFirestore.instance.collection('complaints').add({
+  'text': complaintController.text,
+  'timestamp': FieldValue.serverTimestamp(),
+  'status': 'pending'
+});
