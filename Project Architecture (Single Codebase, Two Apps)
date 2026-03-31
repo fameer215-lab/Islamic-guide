@@ -1,0 +1,2 @@
+// lib/config.dart
+const bool isAdminApp = bool.fromEnvironment('IS_ADMIN', defaultValue: false);
